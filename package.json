@@ -1,0 +1,15 @@
+{
+  "name": "orders",
+  "version": "1.0.0",
+  "description": "Border guru Technical task",
+  "main": "main.ts",
+  "author": "MTareq",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^9.3.0",
+    "cli-table": "^0.3.1",
+    "fast-csv": "^2.4.1",
+    "vorpal": "^1.12.0"
+  }
+}

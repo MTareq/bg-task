@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["es2015"],
+        "outDir": "dist",
+        "module": "commonjs",
+        "strictNullChecks": true,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "types": ["node"]
+    },
+    "include": [
+        "src/main.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
