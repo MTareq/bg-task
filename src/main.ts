@@ -19,7 +19,7 @@ class Main{
             .delimiter("OrderProcessor::")
             .ui.imprint()
         this.shell
-            .command('init <path>', 'initialize using csv file relative path')
+            .command('import <path>', 'initialize using csv file relative path')
             .action((args, done)=>{
                 this.handleInit(args.path)
                 let orders = this.orderSet.showOrders()
@@ -31,7 +31,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFindByCompany(args.company)
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })
@@ -41,7 +41,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFindByAddress(args.address)
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })
@@ -51,27 +51,27 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleDelete(args.id)
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })
         this.shell
-            .command('add <order>', "Add new order schema => 'company,address,item' ")
+            .command('add <order>', "Add new order => 'company,address,item' ")
             .action((args, done)=>{
                 if(this.orderSet != undefined){
                     this.handleAddOrder(args.order)
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })
         this.shell
-            .command('update <id> <order>', "update order given orderID => 'company,address,item' ")
+            .command('update <id> <order>', "Update order given orderID => 'company,address,item' ")
             .action((args, done)=>{
                 if(this.orderSet != undefined){
                     this.handleUpdateOrder(args.id, args.order)
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })
@@ -81,7 +81,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFrequency()
                 }else{
-                    this.shell.log("Please initialize an order set first using init command")
+                    this.shell.log("Please initialize an order set first using import command")
                 }
                 done();
             })

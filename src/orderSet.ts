@@ -1,5 +1,10 @@
 import * as Table  from 'cli-table'
 
+/**
+ * Represents an order.
+ * @constructor
+ * @param {array} row - array representing csv row
+ */
 class Order{
     private _data: [number, string, string, string]
     userId:number;
@@ -19,7 +24,9 @@ class Order{
     }
 }
 
-
+/**
+ * Represents a collection of Orders.
+ */
 export
 class OrderSet{
     _set:Array<Order>;
