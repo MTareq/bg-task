@@ -8,10 +8,10 @@
   "private": true,
   "scripts": {
     "compile": "tsc",
-    "start": "node dist/main.js",
+    "start": "npm run compile && node dist/src/main.js",
     "pretest": "tsc",
     "test": "mocha",
-    "watch": "mocha-typescript-watch",
+    "dev": "tsc -w",
     "prepare": "tsc"
   },
   "dependencies": {
