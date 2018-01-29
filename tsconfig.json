@@ -1,16 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["es2015"],
+        "target": "es6",
+        "lib": ["es6"],
         "outDir": "dist",
         "module": "commonjs",
         "strictNullChecks": true,
         "removeComments": true,
         "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "types": ["node"]
     },
     "include": [
-        "src/main.ts"
+        "src/main.ts",
+        "test/test.ts"
     ],
     "exclude": [
         "node_modules"
