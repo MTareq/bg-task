@@ -1,6 +1,6 @@
 ### Introduction:
 
-This is an interactive shell to process a list of orders for csv
+This is an interactive shell to process a list of orders from csv file
 or create a new one from scratch.
 
 ### Requirements:
@@ -17,11 +17,11 @@ or create a new one from scratch.
 
 * `npm install` or `yarn`
 
-##### Run:
+### Run:
 
 * `npm run start`
 
-##### Commands:
+### Commands:
 
 * help [command...]        Provides help for a given command.
 * exit                     Exits application.
@@ -35,7 +35,7 @@ or create a new one from scratch.
 * show_frequency           List all order items based on frequency of orders.
 * export <name>            Exports current data set to csv.
 
-##### CSV Input Schema:
+### CSV Input Schema:
 
 ```csv
     002,Cheapskates,Reeperbahn 153,Macbook
@@ -45,6 +45,6 @@ or create a new one from scratch.
   * Due to some `fastcsv` constraints it better not have spaces between commas.
   * No support for csv headers.
 
-##### Testing:
+### Testing:
 
 * `npm run test`
