@@ -44,8 +44,14 @@ class OrderSet{
     }
     /* adds order without predefined id, gives it id using auto increment*/
     createOrder(newOrder){
-        let new_id = this._set[this._set.length - 1].orderId + 1
-        newOrder.unshift(new_id)
+        let setLength = this._set.length 
+        let newID
+        if (setLength == 0){
+            newID = 1
+        }else{
+            newID = this._set[setLength - 1].orderId + 1
+        }
+        newOrder.unshift(newID)
         let order = new Order(newOrder);
         this._set.push(order)
         this.sortOrders()

@@ -2,9 +2,6 @@
 import { assert } from 'chai'
 import { suite, test, slow, timeout } from 'mocha-typescript'
 import {OrderSet} from '../src/orderSet'
-import { connect } from 'net';
-import { watch } from 'fs';
-import { setTimeout } from 'timers';
 
 var testData = [
    ['001','SuperTrader','Steindamm 80','Macbook'],
@@ -29,17 +26,13 @@ var testData = [
         assert.equal(testSet._set[0].orderItem, expected[3])
     }
     @test testCreateOrder(){
-        /* data set must be initiated first with atleas one value */
         let testSet = new OrderSet();
-        let testOrder = [1,'SuperTrader','Steindamm 80','Macbook']
-        let testOrder2 = ['Cheapskates','Reeperbahn 153','Macbook']
-        let expected = [2, 'Cheapskates','Reeperbahn 153','Macbook']
-        testSet.append(testOrder)
-        testSet.createOrder(testOrder2)
-        assert.equal(testSet._set[1].orderId, expected[0])
-        assert.equal(testSet._set[1].companyName, expected[1])
-        assert.equal(testSet._set[1].customerAddress, expected[2])
-        assert.equal(testSet._set[1].orderItem, expected[3])
+        let testOrder = ['Cheapskates','Reeperbahn 153','Macbook']
+        testSet.createOrder(testOrder)
+        assert.equal(testSet._set[0].orderId, 1)
+        assert.equal(testSet._set[0].companyName, testOrder[1])
+        assert.equal(testSet._set[0].customerAddress, testOrder[2])
+        assert.equal(testSet._set[0].orderItem, testOrder[3])
 
     }
     @test testSortOrders(){
