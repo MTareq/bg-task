@@ -6,10 +6,27 @@
   "author": "MTareq",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "compile": "tsc",
+    "start": "node dist/main.js",
+    "pretest": "tsc",
+    "test": "mocha",
+    "watch": "mocha-typescript-watch",
+    "prepare": "tsc"
+  },
   "dependencies": {
     "@types/node": "^9.3.0",
     "cli-table": "^0.3.1",
     "fast-csv": "^2.4.1",
     "vorpal": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "*",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.0",
+    "mocha-typescript": "^1.1.12",
+    "source-map-support": "*",
+    "ts-node": "^3.3.0",
+    "typescript": "*"
   }
 }
