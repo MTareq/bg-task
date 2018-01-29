@@ -26,6 +26,13 @@ class Main{
                 done();
             })
         this.shell
+            .command('new', 'initialize using csv file relative path')
+            .action((args, done)=>{
+                this.handleNew()
+                let orders = this.orderSet.showOrders()
+                done();
+            })
+        this.shell
             .command('findbycompany <company>', 'Find order by Company')
             .action((args, done)=>{
                 if(this.orderSet != undefined){
@@ -110,6 +117,10 @@ class Main{
         } else{
             this.shell.log("file Does not exist")
         }
+    }
+    handleNew(){
+        this.orderSet = new OrderSet;
+        this.shell.log(`New Order Set Created you can start using it by using the add command`)
     }
 
     handleFindByCompany(company){
