@@ -135,7 +135,6 @@ class Main{
                 this.orderSet.createOrder(data)
             })
             .on("end", ()=>{
-                this.orderSet.sortOrders()
                 let orders = this.orderSet.showOrders()
                 this.shell.log(orders.toString())
             })
@@ -148,7 +147,6 @@ class Main{
                 this.orderSet.updateOrder(id, data)
             })
             .on("end", ()=>{
-                this.orderSet.sortOrders()
                 let orders = this.orderSet.showOrders()
                 this.shell.log(orders.toString())
             })

@@ -7,14 +7,14 @@ import * as Table  from 'cli-table'
  */
 class Order{
     private _data: [number, string, string, string]
-    userId:number;
+    orderId:number;
     companyName: string;
     customerAddress: string;
     orderItem: string;
     constructor(row){
         row[0] = Number.parseInt(row[0])
         this._data = row;
-        this.userId = this._data[0];
+        this.orderId = this._data[0];
         this.companyName = this._data[1];
         this.customerAddress = this._data[2];
         this.orderItem = this._data[3];
@@ -34,22 +34,25 @@ class OrderSet{
     freqHeader: Array<string>;
     constructor(){
         this._set = [];
-        this.ordersHeader = ['UserID', 'CompanyName', 'CustomerAddress', 'Item']
+        this.ordersHeader = ['OrderId', 'CompanyName', 'CustomerAddress', 'Item']
         this.freqHeader = ['Item', 'OrderFrequancey']
     }
+    /* adds order with predefined id */
     append(newOrder){
         let order = new Order(newOrder);
         this._set.push(order)
     }
+    /* adds order without predefined id, gives it id using auto increment*/
     createOrder(newOrder){
-        let new_id = this._set[this._set.length - 1].userId + 1
+        let new_id = this._set[this._set.length - 1].orderId + 1
         newOrder.unshift(new_id)
         let order = new Order(newOrder);
         this._set.push(order)
+        this.sortOrders()
     }
     sortOrders(){
         this._set.sort((x, y)=>{
-            return x.userId -  y.userId;
+            return x.orderId -  y.orderId;
         })
     }
     findByCompany(company): Table{
@@ -77,7 +80,7 @@ class OrderSet{
 
     deleteOrder(id){
         for(let i=0; i<=this._set.length-1;i++){
-            if (this._set[i].userId == id){
+            if (this._set[i].orderId == id){
                 this._set.splice(i, 1)
             }
         }
@@ -117,10 +120,11 @@ class OrderSet{
     }
     updateOrder(id, updatedOrder){
         for(let i=0; i<=this._set.length-1;i++){
-            if (this._set[i].userId == id){
+            if (this._set[i].orderId == id){
                 this._set.splice(i, 1)
             }
         }
         this.append(updatedOrder)
+        this.sortOrders()
     }
 }
