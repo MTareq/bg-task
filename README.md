@@ -23,17 +23,17 @@ or create a new one from scratch.
 
 ### Commands:
 
-* help [command...]        Provides help for a given command.
-* exit                     Exits application.
-* import <path>            Initialize using csv file relative path.
-* new                      Initialize empty OrderSet.
-* findbycompany <company>  Find order by Company.
-* findbyaddress <address>  Find order by Customer Address.
-* delete <id>              Delete order by ID.
-* add <order>              Add new order => 'company,address,item'.
-* update <id> <order>      Update order given orderID => 'company,address,item'.
-* show_frequency           List all order items based on frequency of orders.
-* export <name>            Exports current data set to csv.
+* `help` [command...]        Provides help for a given command.
+* `exit`                     Exits application.
+* `import` <path>            Initialize using csv file relative path.
+* `new`                      Initialize empty OrderSet.
+* `findbycompany` <company>  Find order by Company.
+* `findbyaddress` <address>  Find order by Customer Address.
+* `delete` <id>              Delete order by ID.
+* `add` <order>              Add new order => 'company,address,item'.
+* `update` <id> <order>      Update order given orderID => 'company,address,item'.
+* `show_frequency`           List all order items based on frequency of orders.
+* `export` <name>            Exports current data set to csv.
 
 ### CSV Input Schema:
 
