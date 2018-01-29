@@ -1,6 +1,6 @@
 #! /usr/bin/node
 import { setTimeout } from 'timers';
-import { existsSync } from 'fs';
+import { existsSync, writeFile } from 'fs';
 import * as Vorpal from 'vorpal';
 import * as csv from 'fast-csv';
 import { OrderSet } from './orderSet';
@@ -19,14 +19,14 @@ class Main{
             .delimiter("OrderProcessor::")
             .ui.imprint()
         this.shell
-            .command('import <path>', 'initialize using csv file relative path')
+            .command('import <path>', 'Initialize using csv file relative path')
             .action((args, done)=>{
                 this.handleInit(args.path)
                 let orders = this.orderSet.showOrders()
                 done();
             })
         this.shell
-            .command('new', 'initialize using csv file relative path')
+            .command('new', 'Initialize empty OrderSet')
             .action((args, done)=>{
                 this.handleNew()
                 let orders = this.orderSet.showOrders()
@@ -38,7 +38,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFindByCompany(args.company)
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import or new command")
                 }
                 done();
             })
@@ -48,7 +48,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFindByAddress(args.address)
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import or new command")
                 }
                 done();
             })
@@ -58,7 +58,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleDelete(args.id)
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import or new command")
                 }
                 done();
             })
@@ -68,7 +68,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleAddOrder(args.order)
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import or new command")
                 }
                 done();
             })
@@ -78,7 +78,7 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleUpdateOrder(args.id, args.order)
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import  or new command")
                 }
                 done();
             })
@@ -88,7 +88,17 @@ class Main{
                 if(this.orderSet != undefined){
                     this.handleFrequency()
                 }else{
-                    this.shell.log("Please initialize an order set first using import command")
+                    this.shell.log("Please initialize an order set first using import or new command")
+                }
+                done();
+            })
+        this.shell
+            .command('export <name>', "Exports current data set to csv")
+            .action((args, done)=>{
+                if(this.orderSet != undefined){
+                    this.handleExport(args.name)
+                }else{
+                    this.shell.log("Please initialize an order set first using import or new command")
                 }
                 done();
             })
@@ -161,6 +171,31 @@ class Main{
                 let orders = this.orderSet.showOrders()
                 this.shell.log(orders.toString())
             })
+    }
+    handleExport(name){
+        let csvString = '';
+        let fileName = '';
+        if (!name){
+            this.shell.log("Please Enter file name to export")
+            return
+        }else{
+            fileName = name+'.csv'
+        }
+        for(let order of this.orderSet._set){
+            let row = ''
+            row += order.orderId + ','
+            row += order.companyName + ','
+            row += order.customerAddress + ','
+            row += order.orderItem + '\n'
+            csvString += row
+        }
+        writeFile(fileName, csvString, (err)=>{
+            if(err){
+                this.shell.log(err)
+            }
+            this.shell.log("The Data set has been saved to ", fileName)
+        })
+
     }
 }
 
